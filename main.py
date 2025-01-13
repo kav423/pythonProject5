@@ -58,7 +58,7 @@ def markdown_to_image(markdown_text, output_path):
                    with open(temp_pdf_path, 'wb') as temp_pdf:
                        temp_pdf.write(pdf_buffer.getvalue())
 
-                   images = convert_from_path(temp_pdf_path, dpi=300,poppler_path=r'C:\Program Files\poppler-24.08.0\Library\bin') # Убедитесь в корректности пути
+                   images = convert_from_path(temp_pdf_path, dpi=300,poppler_path=r'C:\Program Files\poppler-24.08.0\Library\bin')
                    if images:
                         images[0].save(output_path, 'PNG')
                         logging.info(f"Изображение MD успешно создано в '{output_path}'")
@@ -84,7 +84,6 @@ def markdown_to_image(markdown_text, output_path):
 
 
 def analyze_and_convert_text(text):
-    """Улучшенная функция анализа и преобразования текста в Markdown."""
     markdown_lines = []
     paragraphs = text.split('\n\n')
     for paragraph in paragraphs:
@@ -145,7 +144,7 @@ def analyze_and_convert_text(text):
                 markdown_lines.append(f'[{text}]({url})')
                 continue
 
-            # Исправленная обработка жирного и курсивного шрифта
+            # Oбработка жирного и курсивного шрифта
             line = re.sub(r'\*\*(.*?)\*\*', r'**\1**', line)  # Жирный шрифт
             line = re.sub(r'\*(.*?)\*', r'*\1*', line)  # Курсив
             line = re.sub(r'_(.*?)_', r'_\1_', line)  # Курсив с подчеркиванием
